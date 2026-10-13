@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ContactStatus {
+  New
+  Read
+  Replied
+  Archived
+}
+
+model AdminUser {
+  id             String          @id @default(cuid())
+  email          String          @unique
+  hashedPassword String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  sessions       AdminSession[]
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  adminId   String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  admin     AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId, expiresAt])
+}
+
+model RateLimitBucket {
+  key         String   @id
+  count       Int      @default(0)
+  windowStart DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([windowStart])
+}
+
+model Profile {
+  id            String   @id @default("singleton")
+  name          String   @default("Krushna Kalamkar")
+  professionalTitle String @default("Developer & AI Engineer")
+  tagline       String   @default("Building Digital Solutions That Move Your Ideas Forward.")
+  intro         String   @default("I build modern websites, AI-powered solutions, digital experiences and professional creative solutions for individuals and businesses.")
+  biography     String   @default("")
+  experience    String   @default("3+ Years Experience")
+  location      String   @default("Maharashtra, India")
+  email         String   @default("kalamkarkrushna007@gmail.com")
+  businessEmail String   @default("icondigital.pvt.ltd@gmail.com")
+  phone         String   @default("+91 7620702591")
+  photoUrl      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Project {
+  id               String         @id @default(cuid())
+  title            String
+  slug             String         @unique
+  shortDescription String         @default("")
+  description      String         @default("")
+  category         String         @default("")
+  technologies     String[]       @default([])
+  challenge        String         @default("")
+  approach         String         @default("")
+  development      String         @default("")
+  result           String         @default("")
+  featured         Boolean        @default(false)
+  published        Boolean        @default(false)
+  liveUrl          String?
+  githubUrl        String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  images           ProjectImage[]
+
+  @@index([published, featured, createdAt])
+}
+
+model ProjectImage {
+  id        String   @id @default(cuid())
+  projectId String
+  imageUrl  String
+  altText   String   @default("")
+  order     Int      @default(0)
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, order])
+}
+
+model ServiceCategory {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String    @default("")
+  icon        String    @default("")
+  order       Int       @default(0)
+  active      Boolean   @default(true)
+  services    Service[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([active, order])
+}
+
+model Service {
+  id          String          @id @default(cuid())
+  categoryId  String
+  name        String
+  slug        String          @unique
+  description String          @default("")
+  details     String          @default("")
+  active      Boolean         @default(true)
+  order       Int             @default(0)
+  category    ServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([categoryId, active, order])
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  name      String
+  category  String   @default("")
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, category])
+  @@index([active, order])
+}
+
+model ContactMessage {
+  id            String        @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  service       String?
+  projectType   String?
+  budget        String?
+  message       String
+  attachmentUrl String?
+  status        ContactStatus @default(New)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, createdAt])
+}
+
+model Resume {
+  id        String   @id @default(cuid())
+  fileUrl   String
+  fileName  String
+  mimeType  String   @default("application/pdf")
+  fileSize  Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active, createdAt])
+}
+
+model SiteSettings {
+  id           String   @id @default("singleton")
+  siteTitle    String   @default("Krushna Kalamkar — Developer & AI Engineer | Freelance Digital Solutions")
+  description  String   @default("Krushna Kalamkar is a Developer & AI Engineer providing modern web development, AI solutions, creative digital services and professional freelance solutions.")
+  canonicalUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SocialLink {
+  id        String   @id @default(cuid())
+  platform  String   @unique
+  label     String
+  url       String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active, order])
+}
+
+model MediaUpload {
+  id           String   @id
+  objectKey    String   @unique
+  originalName String
+  mimeType     String
+  size         Int
+  kind         String
+  adminId      String?
+  finalized    Boolean  @default(false)
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  @@index([expiresAt, finalized])
+}

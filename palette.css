@@ -1,0 +1,144 @@
+/* The owner's reference palette; neutral shades support readable secondary text. */
+body { background:#FFFFFF; }
+html { scroll-padding-top:120px; }
+
+.site-public .public-header-inner { min-height:108px; }
+.site-public .public-header .public-brand { min-width:0; flex-shrink:1; }
+.site-public .public-header .public-brand-copy { min-width:0; line-height:1.4; }
+.site-public .public-menu-button { flex-shrink:0; }
+.site-public .public-brand-logo { display:block; width:92px; height:auto; object-fit:contain; flex-shrink:0; }
+.site-public .public-brand-logo-footer { width:146px; height:auto; background:transparent; }
+.admin-brand-logo { display:block; width:80px; height:auto; object-fit:contain; flex-shrink:0; }
+.admin-login-brand { display:block; width:136px; padding:8px; margin-bottom:20px; border:0; background:#000000; }
+.admin-login-brand .admin-brand-logo { width:120px; }
+@media(max-width:1023px) {
+  .site-public .public-nav { top:100%; }
+}
+@media(max-width:767px) {
+  html { scroll-padding-top:100px; }
+  .site-public .public-header-inner { min-height:88px; }
+  .site-public .public-header-inner { gap:16px; }
+  .site-public .public-header .public-brand-logo { width:72px; }
+}
+
+.site-public {
+  --brand-black:#000000;
+  --brand-burgundy:#6D001A;
+  --brand-white:#FFFFFF;
+  --ink:var(--brand-black);
+  --navy:var(--brand-black);
+  --navy-2:var(--brand-black);
+  --wine:var(--brand-burgundy);
+  --wine-deep:var(--brand-burgundy);
+  --paper:var(--brand-white);
+  --off:var(--brand-white);
+  --steel:#A3A3A3;
+  --muted-ink:#A3A3A3;
+  background:var(--brand-white);
+  color:var(--brand-black);
+}
+
+.site-public :is(.public-header,.public-nav,.hero-next,.page-hero,.resume-public,.project-cover,.project-cover-img,.project-hero-image) {
+  background:var(--brand-black);
+  color:var(--brand-white);
+}
+.site-public :is(.home-services,.site-callout,.public-footer,.contact-form-panel) {
+  background:var(--brand-burgundy);
+  color:var(--brand-white);
+}
+.site-public :is(.hero-next h1 span,.page-hero h1 em,.project-cover) { color:var(--brand-white); }
+.site-public .page-hero .eyebrow { color:var(--brand-white); }
+.site-public :is(.hero-next-role,.hero-image-label,.proof-strip span,.page-hero p,.resume-public p,.public-brand-copy small) { color:#CCCCCC; }
+.site-public .hero-next-copy>p:last-of-type { color:#CCCCCC; }
+.site-public .public-nav a { color:#D6D6D6; }
+.site-public .public-nav a:hover { color:var(--brand-white); }
+.site-public .public-brand-mark i { color:var(--brand-burgundy); }
+.site-public :is(.public-footer p,.public-footer a,.footer-fine,.contact-form .admin-field label,.contact-success p) { color:var(--brand-white); }
+
+.site-public .section-heading { color:var(--brand-black); }
+.site-public .section-heading em { color:var(--brand-burgundy); }
+.site-public :is(.section-topline,.contact-links-stack span,.service-category-note,.data-empty-note,.work-foot,.empty-state p,.case-step p,.skill-tag i) { color:#666666; }
+.site-public :is(.detail-description,.about-copy,.project-detail-copy,.editorial-item p,.category-services p,.project-info p,.tech-list span) { color:#444444; }
+.site-public .category-disclosure summary span { color:#666666; }
+.site-public :is(.section-topline,.editorial-grid,.editorial-item,.category-list,.category-disclosure,.category-services p,.project-row,.case-framework,.case-step,.tech-list span,.contact-links-stack a) { border-color:#D6D6D6; }
+.site-public .empty-state { background:#F5F5F5; border-color:#D6D6D6; }
+.site-public .skill-tag { background:var(--brand-white); color:var(--brand-black); border-color:#D6D6D6; }
+.site-public .skill-tag.skill-accent { background:var(--brand-burgundy); color:var(--brand-white); border-color:var(--brand-burgundy); }
+.site-public .skill-tag.skill-accent i { color:var(--brand-white); }
+
+.site-public .home-services :is(.section-heading,.section-heading em,.category-disclosure summary,.category-disclosure summary span,.category-disclosure summary .cat-ic,.category-services p,.category-services i,.category-services a,.category-detail-link) { color:var(--brand-white); }
+.site-public .home-services .category-disclosure summary::after { color:var(--brand-white); }
+.site-public .home-services :is(.category-list,.category-disclosure,.category-services p) { border-color:rgba(255,255,255,.3); }
+
+.site-public :is(.button-primary,.public-hire) { background:var(--brand-burgundy); color:var(--brand-white); }
+.site-public :is(.button-primary,.public-hire):hover {
+  background:var(--brand-white);
+  color:var(--brand-burgundy)!important;
+  box-shadow:inset 0 0 0 1px var(--brand-burgundy);
+}
+.site-public :is(.button-light,.site-callout a,.skip-link) { background:var(--brand-white); color:var(--brand-black); }
+.site-public :is(.button-light,.site-callout a):hover { background:var(--brand-black); color:var(--brand-white); }
+.site-public .button-text { color:var(--brand-white); }
+.site-public .button-text:hover { color:var(--brand-white); text-decoration:underline; }
+.site-public .dark-text-link:hover { color:var(--brand-black); }
+.site-public .contact-form .button-primary { background:var(--brand-white); color:var(--brand-burgundy); }
+.site-public .contact-form .button-primary:hover { background:var(--brand-black); color:var(--brand-white)!important; box-shadow:inset 0 0 0 1px var(--brand-white); }
+.site-public .contact-form :is(input,textarea)::placeholder { color:rgba(255,255,255,.8); }
+.site-public .contact-form select option { color:var(--brand-black); background:var(--brand-white); }
+.site-public :is(.hero-next,.page-hero,.public-header,.home-services,.site-callout,.public-footer,.contact-form-panel,.resume-public) .focus-ring:focus-visible { outline-color:var(--brand-white); }
+
+/* Keep the visual palette in backgrounds and neutralize colored foreground accents. */
+.site-public .hero-next {
+  background:
+    radial-gradient(ellipse at 82% 28%, rgba(109,0,26,.34), transparent 35%),
+    radial-gradient(ellipse at 86% 82%, rgba(109,0,26,.2), transparent 38%),
+    linear-gradient(110deg, #000 0%, #090307 48%, #19030a 72%, #30000d 100%);
+}
+.site-public .hero-image-wrap {
+  isolation:isolate;
+  overflow:hidden;
+  border-radius:14px;
+  box-shadow:0 26px 70px rgba(0,0,0,.38);
+}
+.site-public .hero-image-wrap img {
+  filter:none;
+}
+.site-public .hero-image-wrap::after { content:none; }
+
+/* Foreground text uses neutral inherited colors; colored treatments stay behind it. */
+.site-public :is(
+  .public-brand-mark i,
+  .hero-next h1 span, .hero-next-kicker, .hero-next-role, .hero-image-label,
+  .hero-title em, .hero-kicker, .role-divider, .frame-caption i, .portrait-outline span,
+  .section-index, .burgundy, .section-heading em, .about-signoff, .aside-number span,
+  .aside-link, .section-topline .eyebrow, .dark-text-link, .empty-mark,
+  .skills-intro .eyebrow, .skills-total b span, .skill-tag.skill-accent i, .resume-side .eyebrow,
+  .resume-content .section-heading em, .resume-mark, .contact-top .eyebrow,
+  .contact-location, .contact-heading h2 em, .contact-heading em, .contact-heading > p,
+  .contact-primary > span, .contact-secondary > span, .contact-primary, .contact-secondary,
+  .contact-form .admin-field label, .button-text, .social-link,
+  .site-footer > span, .back-top, .footer-bottom,
+  .page-hero .eyebrow, .page-hero h1 em, .editorial-item span,
+  .category-disclosure summary::after, .category-disclosure summary span,
+  .category-services i, .empty-label, .case-step b, .project-info a,
+  .service-number-large, .contact-links-stack a,
+  .about-home .section-heading em, .about-home .about-copy,
+  .about-home .section-topline, .home-services .section-heading em,
+  .home-services .category-disclosure summary span, .home-services .category-services i,
+  .public-footer p, .public-footer a, .footer-fine, .contact-success p
+) {
+  color:inherit!important;
+}
+.site-public .project-cover,
+.site-public .footer-bottom { color:#fff!important; }
+.site-public :is(.button-primary,.public-hire) { color:#fff!important; }
+.site-public :is(.button-primary,.public-hire):hover {
+  background:#fff;
+  color:#000!important;
+}
+.site-public .contact-form .button-primary { color:#000!important; }
+.site-public .contact-form .button-primary:hover {
+  background:#000;
+  color:#fff!important;
+}
+.site-public .contact-form :is(input,textarea)::placeholder { color:rgba(255,255,255,.8)!important; }
